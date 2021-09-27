@@ -38,7 +38,6 @@ int main(int argc, char *argv[]) {
             else{
                 cout << "This number isn't in 16 system" << endl;
             }
-
         }
 
         sixt_in_dec[i] = dec_number * sign;
@@ -51,3 +50,4 @@ int main(int argc, char *argv[]) {
     //cout << (sizeof (sic_in_dec))/sizeof(sic_in_dec[0]) << endl; // вычисление длинны маассива
     return 0;
 }
+//просто написал для гита что-то
