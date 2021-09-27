@@ -12,11 +12,6 @@ int LenghtString(const char mass[]){
 }
 
 int main(int argc, char *argv[]) {
-//    cout << argv[1] << endl;
-//    cout << argv[3][0] << endl;
-//    cout << argv[3][0] - 0 << endl;
-//    cout << 35 * (-1) << endl;
-
 //    cout << strlen(argv[1]) << endl; // можно и таким образом посчитать длинну строки
     int summa_v_dec = 0;
     int sixt_in_dec[argc - 1];
