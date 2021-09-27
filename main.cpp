@@ -38,7 +38,6 @@ int main(int argc, char *argv[]) {
             else{
                 cout << "This number isn't in 16 system" << endl;
             }
-
         }
 
         sixt_in_dec[i] = dec_number * sign;
