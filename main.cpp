@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 
-
+/// Добавте в .gitignore все ненужные файлы 
 /// запрещено использовать пространство имен std:: глобально
 using namespace std;
 
