@@ -5,7 +5,7 @@
 /// запрещено использовать пространство имен std:: глобально
 using namespace std;
 
-/// Учите слово длинна
+/// Учите слово длинна -> int length_string(const char mass[]){
 /// функции в языке называем стилем under_score
 int LenghtString(const char mass[]){
     int i = 0;
