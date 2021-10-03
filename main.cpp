@@ -1,9 +1,10 @@
 #include <iostream>
-#include <cmath>
+/// ВЫДЕЛИТЬ ФУНКЦИИ В ОТДЕЛЬНЫЕ ЗАГОЛОВОЧНЫЙ И ОБЪЕКТНЫЙ ФАЙЛ И В ПРОСТРАНСТВО ИМЕН BMSTU
 
-using namespace std;
-
-int LenghtString(const char mass[]){
+/// неправильная конвенция названия функции (см. название функции ниже) видите разницу? 
+/// функция должна принимать на вход УКАЗАТЕЛЬ, а не массив
+/// массив символов не с-строка
+size_t LengthString(const char mass[]){
     int i = 0;
     while (mass[i]){
         i++;
@@ -11,42 +12,44 @@ int LenghtString(const char mass[]){
     return i;
 }
 
+/// неправильное название функции
+/// она обращается к массиву, это не понятно из названия, функция должна принимать символ, и все
+int convert_char2int(int c, char *mass){
+    if (mass[c] - '0' < 0){
+        return -1;
+     }
+     if ((0 <= mass[c] - '0') && (mass[c] - '0' <= 9)){
+         return mass[c] - '0';
+     }
+     if ((0 <= mass[c] - 'A') && (mass[c] - 'A' <= 5)){
+         return mass[c] - 'A' + 10;
+     }
+    if ((0 <= mass[c] - 'a') && (mass[c] - 'a' <= 5)){
+        return mass[c] - 'a' + 10;
+    }
+    else{ /// неправильное оформление кода
+        return 0;
+    }
+}
+/// mass == это масса
+/// array == это массив ! (подсказка)
 int main(int argc, char *argv[]) {
-//    cout << strlen(argv[1]) << endl; // можно и таким образом посчитать длинну строки
-    int summa_v_dec = 0;
-    int sixt_in_dec[argc - 1];
-    int sign = 1;
+    int converted_mass[argc - 1];
+    /// minus_vector WTF?~?~?
+    int minus_vector = 1;
     for (int i = 1; i < argc; i++){
-        int symbol_in_int[LenghtString(argv[i])];
-        int c = 0;
-        int dec_number = 0;
-        for (int n = LenghtString(argv[i]) - 1; n >= 0; n--){
-            if (argv[i][c] - 0 == 45){
-                sign = -1;
-                c++;
-            }
-            else if ((48 <= argv[i][c] - 0) && (argv[i][c] - 0 <= 57)){
-                symbol_in_int[n] = argv[i][c] - 48;
-                dec_number += symbol_in_int[n] * pow(16, n); // pow(что возвести, во что возчести)
-                c++;
-            }
-            else if ((0 <= argv[i][c] - 'A') && (argv[i][c] - 'A' <= 5)){
-                symbol_in_int[n] = argv[i][c] - 'A' + 10;
-                dec_number += symbol_in_int[n] * pow(16, n);
-                c++;
-            }
-            else{
-                cout << "This number isn't in 16 system" << endl;
-            }
+        int hex2dec = 0;
+        if (convert_char2int(0, argv[i]) == -1){
+            minus_vector = -1;
         }
-
-        sixt_in_dec[i] = dec_number * sign;
-        summa_v_dec += dec_number;
+        for (int n = 2; n < LengthString(argv[i]); n++){
+            hex2dec = hex2dec * 16 + convert_char2int(n, argv[i]);
+        }
+        converted_mass[i] = hex2dec * minus_vector;
     }
-    for (int i = 1; i < argc; ++i){
-        cout << sixt_in_dec[i] + 111 << endl;
+    for (int i = argc - 1; i > 0; i--) {
+        /// выделите свой вариант в отдельную статическую константу
+        std::cout << converted_mass[i] + 111 << std::endl;
     }
-    //cout << sixt_in_dec[argc - 1] << "=" << summa_v_dec << endl; // можно вывести сумму вводимых чисел
-    //cout << (sizeof (sic_in_dec))/sizeof(sic_in_dec[0]) << endl; // вычисление длинны маассива
     return 0;
 }
