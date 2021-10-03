@@ -1,5 +1,9 @@
 #include <iostream>
+/// ВЫДЕЛИТЬ ФУНКЦИИ В ОТДЕЛЬНЫЕ ЗАГОЛОВОЧНЫЙ И ОБЪЕКТНЫЙ ФАЙЛ И В ПРОСТРАНСТВО ИМЕН BMSTU
 
+/// неправильная конвенция названия функции (см. название функции ниже) видите разницу? 
+/// функция должна принимать на вход УКАЗАТЕЛЬ, а не массив
+/// массив символов не с-строка
 size_t LengthString(const char mass[]){
     int i = 0;
     while (mass[i]){
@@ -8,6 +12,8 @@ size_t LengthString(const char mass[]){
     return i;
 }
 
+/// неправильное название функции
+/// она обращается к массиву, это не понятно из названия, функция должна принимать символ, и все
 int convert_char2int(int c, char *mass){
     if (mass[c] - '0' < 0){
         return -1;
@@ -21,13 +27,15 @@ int convert_char2int(int c, char *mass){
     if ((0 <= mass[c] - 'a') && (mass[c] - 'a' <= 5)){
         return mass[c] - 'a' + 10;
     }
-    else{
+    else{ /// неправильное оформление кода
         return 0;
     }
 }
-
+/// mass == это масса
+/// array == это массив ! (подсказка)
 int main(int argc, char *argv[]) {
     int converted_mass[argc - 1];
+    /// minus_vector WTF?~?~?
     int minus_vector = 1;
     for (int i = 1; i < argc; i++){
         int hex2dec = 0;
@@ -40,6 +48,7 @@ int main(int argc, char *argv[]) {
         converted_mass[i] = hex2dec * minus_vector;
     }
     for (int i = argc - 1; i > 0; i--) {
+        /// выделите свой вариант в отдельную статическую константу
         std::cout << converted_mass[i] + 111 << std::endl;
     }
     return 0;
